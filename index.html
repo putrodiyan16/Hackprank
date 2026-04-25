@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Latihan Web Interaktif</title>
     <style>
         body {
@@ -29,9 +29,9 @@
             transform: scale(1.05);
         }
 
-        /* Layar Fake Hack (Awalnya Tersembunyi) */
+        /* Layar Fake Hack */
         #layar-hack {
-            display: none; /* Sembunyi */
+            display: none; 
             position: fixed;
             top: 0;
             left: 0;
@@ -43,11 +43,14 @@
             padding: 20px;
             box-sizing: border-box;
             z-index: 9999;
+            overflow-y: auto; /* Agar bisa di-scroll */
+            scroll-behavior: smooth;
         }
 
         .teks-berjalan {
             white-space: pre-wrap;
-            overflow: hidden;
+            word-wrap: break-word;
+            padding-bottom: 50px; /* Ruang tambahan di bawah agar tidak mentok */
         }
     </style>
 </head>
@@ -67,104 +70,84 @@
         const layarHack = document.getElementById('layar-hack');
         const logHacker = document.getElementById('log-hacker');
 
-        // Data teks yang akan dimunculkan seolah-olah sedang hack
         const pesan = [
-    "> Initializing exploit mechanism...",
-    "> Establishing secure connection to 192.168.1.1...",
-    "> Attempting to bypass SSL certificate...",
-    "> Connection established via Proxy 103.22.201.2...",
-    "> Searching for administrative vulnerabilities...",
-    "> Found entry point at port 8080...",
-    "> Injecting SQL payload: ' OR 1=1 --",
-    "> Accessing root database directory...",
-    "> Loading kernel modules...",
-    "> Cracking MD5 hash: a8fdf67b...",
-    "> Password found: **********",
-    "> Downloading sensitive_data.zip (12%)",
-    "> Downloading sensitive_data.zip (34%)",
-    "> Downloading sensitive_data.zip (67%)",
-    "> Downloading sensitive_data.zip (98%)",
-    "> Transfer complete.",
-    "> Bypassing firewall (layer 7)...",
-    "> WARNING: Security protocol detected!",
-    "> Counter-trace initiated...",
-    "> Redirecting IP to internal loopback...",
-    "> Overriding system permissions...",
-    "> Accessing webcam drivers...",
-    "> Capturing buffer stream...",
-    "> Encrypting local drive (AES-256)...",
-    "> [DANGER] SYSTEM OVERHEAT DETECTED!",
-    "> Primary CPU at 98 degrees...",
-    "> Forcing fan speed to 100%...",
-    "> Initializing cleanup protocol...",
-    "> Deleting temporary logs...",
-    "> Downloading sensitive_data.zip (12%)",
-    "> Downloading sensitive_data.zip (34%)",
-    "> Downloading sensitive_data.zip (67%)",
-    "> Downloading sensitive_data.zip (98%)",
-    "> Transfer complete.",
-    "> Bypassing firewall (layer 7)...",
-    "> WARNING: Security protocol detected!",
-    "> Counter-trace initiated...",
-    "> Redirecting IP to internal loopback...",
-    "> Overriding system permissions...",
-    "> Accessing webcam drivers...",
-    "> Capturing buffer stream...",
-    "> Encrypting local drive (AES-256)...",
-    "> [DANGER] SYSTEM OVERHEAT DETECTED!",
-    "> Primary CPU at 98 degrees...",
-    "> Forcing fan speed to 100%...",
-    "> Initializing cleanup protocol...",
-    "> Deleting temporary logs...",
-    "> Erasing footprints...",
-    "> [SUCCESS] Hacking simulation complete.",
-    "> Your PC has been HACKED"
-];
+            "> Initializing exploit mechanism...",
+            "> Establishing secure connection to 192.168.1.1...",
+            "> Attempting to bypass SSL certificate...",
+            "> Connection established via Proxy 103.22.201.2...",
+            "> Searching for administrative vulnerabilities...",
+            "> Found entry point at port 8080...",
+            "> Injecting SQL payload: ' OR 1=1 --",
+            "> Accessing root database directory...",
+            "> Loading kernel modules...",
+            "> Cracking MD5 hash: a8fdf67b...",
+            "> Password found: **********",
+            "> Downloading sensitive_data.zip (12%)",
+            "> Downloading sensitive_data.zip (34%)",
+            "> Downloading sensitive_data.zip (67%)",
+            "> Downloading sensitive_data.zip (98%)",
+            "> Transfer complete.",
+            "> Bypassing firewall (layer 7)...",
+            "> WARNING: Security protocol detected!",
+            "> Counter-trace initiated...",
+            "> Redirecting IP to internal loopback...",
+            "> Overriding system permissions...",
+            "> Accessing webcam drivers...",
+            "> Capturing buffer stream...",
+            "> Encrypting local drive (AES-256)...",
+            "> [DANGER] SYSTEM OVERHEAT DETECTED!",
+            "> Primary CPU at 98 degrees...",
+            "> Forcing fan speed to 100%...",
+            "> Initializing cleanup protocol...",
+            "> Deleting temporary logs...",
+            "> Downloading update_v2.zip (15%)",
+            "> Downloading update_v2.zip (48%)",
+            "> Downloading update_v2.zip (82%)",
+            "> Update complete.",
+            "> Finalizing system override...",
+            "> Deleting footprints...",
+            "> [SUCCESS] Hacking simulation complete.",
+            "> ---------------------------------------",
+            "> STATUS: YOUR PC HAS BEEN HACKED!",
+            "> ---------------------------------------",
+            "> Just kidding! Ini cuma simulasi HTML."
+        ];
 
-// Modifikasi fungsi jalankanTeks agar ada fitur AUTO-SCROLL
-function jalankanTeks(i = 0) {
-    if (i < pesan.length) {
-        // Tambahkan teks ke layar
-        logHacker.innerHTML += pesan[i] + "<br>";
-        
-        // --- LOGIKA AUTO-SCROLL ---
-        // Membuat layar otomatis scroll ke paling bawah setiap ada teks baru
-        window.scrollTo(0, document.body.scrollHeight);
-        
-        // Atur jeda waktu (misal 400ms agar sedikit lebih cepat tapi lama berhentinya)
-        setTimeout(() => jalankanTeks(i + 1), 400);
-    }
-}
-
-        // Fungsi untuk menjalankan teks satu per satu
         function jalankanTeks(i = 0) {
             if (i < pesan.length) {
+                // Tambah teks
                 logHacker.innerHTML += pesan[i] + "<br>";
-                setTimeout(() => jalankanTeks(i + 1), 600);
+                
+                // AUTO-SCROLL: Paksa layar scroll ke posisi paling bawah
+                layarHack.scrollTop = layarHack.scrollHeight;
+                
+                // Jeda waktu antar baris (400ms agar durasi terasa pas)
+                setTimeout(() => jalankanTeks(i + 1), 400);
             }
         }
 
-        // Event Listener: Saat gambar diklik
         gambar.addEventListener('click', () => {
-            // Tampilkan layar hitam
             layarHack.style.display = 'block';
             
-            // Opsional: Buat jadi Fullscreen agar lebih nyata
+            // Masuk Fullscreen
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+                document.documentElement.webkitRequestFullscreen();
             }
 
-            // Mulai jalankan teks palsu
             jalankanTeks();
         });
 
-        // Klik layar hitam untuk keluar
+        // Klik layar hitam untuk menutup (reset)
         layarHack.addEventListener('click', () => {
             layarHack.style.display = 'none';
             if (document.exitFullscreen) {
                 document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
             }
-            logHacker.innerHTML = ""; // Reset teks
+            logHacker.innerHTML = ""; 
         });
     </script>
 </body>
