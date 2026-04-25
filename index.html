@@ -69,16 +69,72 @@
 
         // Data teks yang akan dimunculkan seolah-olah sedang hack
         const pesan = [
-            "> Initializing exploit...",
-            "> Connecting to server 192.168.1.1...",
-            "> Accessing root database...",
-            "> Downloading private_files.zip (45%)",
-            "> System corrupted...",
-            "> Bypassing firewall...",
-            "> WARNING: ADMIN DETECTED!",
-            "> Encryption key: 0x88234FF...",
-            "> Hacking complete. Just kidding! :P"
-        ];
+    "> Initializing exploit mechanism...",
+    "> Establishing secure connection to 192.168.1.1...",
+    "> Attempting to bypass SSL certificate...",
+    "> Connection established via Proxy 103.22.201.2...",
+    "> Searching for administrative vulnerabilities...",
+    "> Found entry point at port 8080...",
+    "> Injecting SQL payload: ' OR 1=1 --",
+    "> Accessing root database directory...",
+    "> Loading kernel modules...",
+    "> Cracking MD5 hash: a8fdf67b...",
+    "> Password found: **********",
+    "> Downloading sensitive_data.zip (12%)",
+    "> Downloading sensitive_data.zip (34%)",
+    "> Downloading sensitive_data.zip (67%)",
+    "> Downloading sensitive_data.zip (98%)",
+    "> Transfer complete.",
+    "> Bypassing firewall (layer 7)...",
+    "> WARNING: Security protocol detected!",
+    "> Counter-trace initiated...",
+    "> Redirecting IP to internal loopback...",
+    "> Overriding system permissions...",
+    "> Accessing webcam drivers...",
+    "> Capturing buffer stream...",
+    "> Encrypting local drive (AES-256)...",
+    "> [DANGER] SYSTEM OVERHEAT DETECTED!",
+    "> Primary CPU at 98 degrees...",
+    "> Forcing fan speed to 100%...",
+    "> Initializing cleanup protocol...",
+    "> Deleting temporary logs...",
+    "> Downloading sensitive_data.zip (12%)",
+    "> Downloading sensitive_data.zip (34%)",
+    "> Downloading sensitive_data.zip (67%)",
+    "> Downloading sensitive_data.zip (98%)",
+    "> Transfer complete.",
+    "> Bypassing firewall (layer 7)...",
+    "> WARNING: Security protocol detected!",
+    "> Counter-trace initiated...",
+    "> Redirecting IP to internal loopback...",
+    "> Overriding system permissions...",
+    "> Accessing webcam drivers...",
+    "> Capturing buffer stream...",
+    "> Encrypting local drive (AES-256)...",
+    "> [DANGER] SYSTEM OVERHEAT DETECTED!",
+    "> Primary CPU at 98 degrees...",
+    "> Forcing fan speed to 100%...",
+    "> Initializing cleanup protocol...",
+    "> Deleting temporary logs...",
+    "> Erasing footprints...",
+    "> [SUCCESS] Hacking simulation complete.",
+    "> Your PC has been HACKED"
+];
+
+// Modifikasi fungsi jalankanTeks agar ada fitur AUTO-SCROLL
+function jalankanTeks(i = 0) {
+    if (i < pesan.length) {
+        // Tambahkan teks ke layar
+        logHacker.innerHTML += pesan[i] + "<br>";
+        
+        // --- LOGIKA AUTO-SCROLL ---
+        // Membuat layar otomatis scroll ke paling bawah setiap ada teks baru
+        window.scrollTo(0, document.body.scrollHeight);
+        
+        // Atur jeda waktu (misal 400ms agar sedikit lebih cepat tapi lama berhentinya)
+        setTimeout(() => jalankanTeks(i + 1), 400);
+    }
+}
 
         // Fungsi untuk menjalankan teks satu per satu
         function jalankanTeks(i = 0) {
